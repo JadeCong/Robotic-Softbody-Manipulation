@@ -10,7 +10,7 @@
         
         <site name="grip_site" size="0.01 0.01 0.01" rgba="1 0 0 0.5" type="sphere" group="1"/>
         <site name="grip_site_cylinder" size="0.005 0.01" rgba="0 1 0 0.3" type="cylinder" group="1"/>
-    </body>
+      </body>
   </worldbody>
   <sensor>
         <force name="force_ee" site="ft_frame"/>
