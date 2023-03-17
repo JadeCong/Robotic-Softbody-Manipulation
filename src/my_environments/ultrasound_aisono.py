@@ -31,7 +31,7 @@ from klampt import vis
 # from utils.rtplot import RealtimePlotData
 # from utils.dynplot import dynplot
 from utils.qtplot import RealtimePlotWindow
-os.environ.update({"QT_QPA_PLATFORM_PLUGIN_PATH": "/home/jade/anaconda3/envs/rl_ultrasound/lib/python3.8/site-packages/PyQt5/Qt5/plugins/xcbglintegrations/libqxcb-glx-integration.so"})
+# os.environ.update({"QT_QPA_PLATFORM_PLUGIN_PATH": "/home/jade/anaconda3/envs/rl_ultrasound/lib/python3.8/site-packages/PyQt5/Qt5/plugins/xcbglintegrations/libqxcb-glx-integration.so"})
 
 
 class Ultrasound(SingleArmEnv):

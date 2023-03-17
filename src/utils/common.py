@@ -1,5 +1,5 @@
 import numpy as np
-from mujoco_py import MjSimState, MjViewer, MjSim
+# from mujoco_py import MjSimState, MjViewer, MjSim
 
 from robosuite.models.grippers import GRIPPER_MAPPING
 
