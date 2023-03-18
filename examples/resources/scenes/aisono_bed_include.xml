@@ -1,0 +1,16 @@
+<mujocoinclude model="aisono_bed_include">
+    <asset>
+        <mesh name="mesh_host_machine" file="../meshes/bed/Host_Machine.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="mesh_bed_body" file="../meshes/bed/Bed_Body.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="mesh_bed_mat" file="../meshes/bed/Bed_Mat.stl" scale="0.001 0.001 0.001"/>
+
+        <texture name="tex_bed" type="cube" file="../materials/white.png"/>
+
+        <material name="mat_bed" reflectance="0.4" texrepeat="6 6" texture="tex_bed" texuniform="true"/>
+    </asset>
+
+    <actuator>
+        <!-- <position name="pos_bed_slide" ctrllimited="true" ctrlrange="-0.8 0.8" joint="joint_bed_slide" group="1"/> -->
+        <!-- <position name="pos_mat_fixed" ctrllimited="true" ctrlrange="-0.01 0.01" joint="joint_mat_fixed" group="1"/> -->
+    </actuator>
+</mujocoinclude>

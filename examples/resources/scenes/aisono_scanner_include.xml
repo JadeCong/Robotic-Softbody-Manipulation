@@ -1,0 +1,23 @@
+<mujocoinclude model="aisono_scanner_include">
+    <asset>
+        <mesh name="mesh_scanner" file="../meshes/scanner/Scanner.stl" scale="0.001 0.001 0.001"/>
+        <!--<mesh name="mesh_scanner_fixed" file="../meshes/scanner/Scanner_Fixed.stl" scale="0.001 0.001 0.001"/>-->
+        <!--<mesh name="mesh_scanner_slided" file="../meshes/scanner/Scanner_Slided.stl" scale="0.001 0.001 0.001"/>-->
+
+        <texture name="tex_scanner" type="cube" file="../materials/white.png"/>
+
+        <material name="mat_scanner" reflectance="0.4" texrepeat="6 6" texture="tex_scanner" texuniform="true"/>
+    </asset>
+
+    <sensor>
+        <force name="force_ee" site="ft_sensor"/>
+        <torque name="torque_ee" site="ft_sensor"/>
+        <touch name="touch_probe" site="touch_sensor"/>
+
+        <framepos name="framepos_ee" objtype="site" objname="ft_sensor"/>
+        <framequat name="framequat_ee" objtype="site" objname="ft_sensor"/>
+
+        <framepos name="framepos_probe" objtype="site" objname="touch_sensor"/>
+        <framequat name="framequat_probe" objtype="site" objname="touch_sensor"/>
+    </sensor>
+</mujocoinclude>

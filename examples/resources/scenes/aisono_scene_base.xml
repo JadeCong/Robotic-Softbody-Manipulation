@@ -1,0 +1,55 @@
+<mujocoinclude model="aisono_scene_base">
+    <!--  Copyright © 2018, Roboti LLC
+
+          This file is licensed under the MuJoCo Resource License (the "License").
+          You may not use this file except in compliance with the License.
+          You may obtain a copy of the License at
+
+            https://www.roboti.us/resourcelicense.txt
+    -->
+
+    <compiler angle="radian" inertiafromgeom="true" convexhull="true" eulerseq="xyz"/>
+
+    <statistic extent="2" meansize=".05"/>
+
+    <option timestep="0.005" solver="Newton" iterations="30" tolerance="1e-10" jacobian="sparse" cone="pyramidal">
+        <flag fwdinv="enable" gravity="disable"/>
+    </option>
+
+    <size nconmax="10000" njmax="10000" nstack="5000000"/>
+
+    <visual>
+        <rgba haze="0.15 0.25 0.35 1"/>
+        <quality shadowsize="2048"/>
+        <map stiffness="700" shadowscale="0.5" fogstart="10" fogend="15" zfar="40" haze="0.3"/>
+    </visual>
+
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512"/>
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+        <texture name="texcarpet" type="2d" file="../materials/carpet.png"/>
+        <texture name="texsponge" type="2d" file="../materials/sponge.png"/>
+        <texture name="texmarble" type="cube" file="../materials/marble.png"/>
+
+        <material name="matplane" reflectance="0.3" texture="texplane" texrepeat="1 1" texuniform="true"/>
+        <material name="matcarpet" texture="texcarpet"/>
+        <material name="matsponge" texture="texsponge" specular="0.3"/>
+        <material name="matmarble" texture="texmarble" rgba=".7 .7 .7 1"/>
+    </asset>
+
+    <worldbody>
+        <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" castshadow="false"/>
+        <light directional="true" diffuse=".6 .6 .6" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1"/>
+
+        <geom name="ground" type="plane" size="0 0 1" pos="0 0 0" quat="1 0 0 0" material="matplane" condim="1" group="1"/>
+
+        <body name="world_base" pos="0 0 0" quat="1 0 0 0">
+            <site name="world_origin" pos="0 0 0" size="0.02 0.02 0.02" rgba="1 1 0 1" type="sphere" group="0"/>
+            <site name="world_x" pos="0 0 0" size="0.005 1" quat="0.707105 0 0.707108 0" rgba="1 0 0 1" type="cylinder" group="0"/>
+            <site name="world_y" pos="0 0 0" size="0.005 1" quat="0.707105 0.707108 0 0" rgba="0 1 0 1" type="cylinder" group="0"/>
+            <site name="world_z" pos="0 0 0" size="0.005 1" quat="0.707105 0 0 0.707108" rgba="0 0 1 1" type="cylinder" group="0"/>
+
+            <camera name="world_camera" mode="fixed" pos="2 0 2" quat="0.653 0.271 0.271 0.653" fovy="75"/>
+        </body>
+    </worldbody>
+</mujocoinclude>

@@ -1,0 +1,30 @@
+<mujocoinclude model="aisono_aubo_include">
+    <!-- Robot Type: Aubo i5. -->
+    <asset>
+        <mesh name="base_Link_vis" file="../meshes/aubo/base_Link_vis.stl" />
+        <mesh name="shoulder_Link_vis" file="../meshes/aubo/shoulder_Link_vis.stl" />
+        <mesh name="upperArm_Link_vis" file="../meshes/aubo/upperArm_Link_vis.stl" />
+        <mesh name="foreArm_Link_vis" file="../meshes/aubo/foreArm_Link_vis.stl" />
+        <mesh name="wrist1_Link_vis" file="../meshes/aubo/wrist1_Link_vis.stl" />
+        <mesh name="wrist2_Link_vis" file="../meshes/aubo/wrist2_Link_vis.stl" />
+        <mesh name="wrist3_Link_vis" file="../meshes/aubo/wrist3_Link_vis.stl" />
+        <mesh name="base_Link" file="../meshes/aubo/base_Link.STL" />
+        <mesh name="shoulder_Link" file="../meshes/aubo/shoulder_Link.STL" />
+        <mesh name="upperArm_Link" file="../meshes/aubo/upperArm_Link.STL" />
+        <mesh name="foreArm_Link" file="../meshes/aubo/foreArm_Link.STL" />
+        <mesh name="wrist1_Link" file="../meshes/aubo/wrist1_Link.STL" />
+        <mesh name="wrist2_Link" file="../meshes/aubo/wrist2_Link.STL" />
+        <mesh name="wrist3_Link" file="../meshes/aubo/wrist3_Link.STL" />
+    </asset>
+
+    <actuator>
+        <!-- Physical limits of the actuator. -->
+        <!-- Values taken from http://aubo-robotics.cn/Content/415656.html -->
+        <motor name="torq_shoulder" ctrllimited="true" ctrlrange="-150.0 150.0" joint="shoulder_joint" group="0"/>
+        <motor name="torq_upperArm" ctrllimited="true" ctrlrange="-150.0 150.0" joint="upperArm_joint" group="0"/>
+        <motor name="torq_foreArm" ctrllimited="true" ctrlrange="-150.0 150.0" joint="foreArm_joint" group="0"/>
+        <motor name="torq_wrist1" ctrllimited="true" ctrlrange="-28.0 28.0" joint="wrist1_joint" group="0"/>
+        <motor name="torq_wrist2" ctrllimited="true" ctrlrange="-28.0 28.0" joint="wrist2_joint" group="0"/>
+        <motor name="torq_wrist3" ctrllimited="true" ctrlrange="-28.0 28.0" joint="wrist3_joint" group="0"/>
+    </actuator>
+</mujocoinclude>

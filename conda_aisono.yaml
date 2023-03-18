@@ -1,7 +1,0 @@
-name: rl_ultrasound
-dependencies:
-  - python=3.8
-  - pip
-  - wheel
-  - pip:
-      - --requirement requirements_aisono.txt

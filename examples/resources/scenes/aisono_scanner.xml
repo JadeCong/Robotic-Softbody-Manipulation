@@ -1,0 +1,20 @@
+<mujocoinclude model="aisono_scanner">
+    <body name="scanner" pos="0 0 -0.006" quat="0 1 0 0">
+        <site name="ft_sensor" pos="0 0 0" quat="1 0 0 0" type="sphere" size="0.01 0.01 0.01" rgba="1 0 0 1" group="2"/>
+        <!-- <inertial pos="0 0 0.17" quat="0.707107 0.707107 0 0" mass="0.5" diaginertia="0.09 0.07 0.05"/> -->
+        <!-- <joint name="joint_scanner_slide" pos="0 0 0" type="slide" axis="0 1 0" limited="true" range="0.0 0.04" damping="0.01" group="1"/> -->
+        <geom name="geom_scanner_visual" type="mesh" contype="0" conaffinity="0" group="2" mesh="mesh_scanner" material="mat_scanner"/>
+        <geom name="geom_scanner_collision" type="mesh" mesh="mesh_scanner" group="0"/>
+        <body name="scanner_probe" pos="0.0125 0.118 -0.167" quat="0.924 0.383 0 0">
+            <site name="touch_sensor" pos="0 0 0" quat="0.707105 0.707108 0 0" type="capsule" size="0.00215 0.024" rgba="0.3 0.9 0.3 0.3" group="2"/>
+            <!-- <inertial pos="0 0 0" quat="0 0 0 1" mass="0.02" diaginertia="0.02 0.02 0.02" /> -->
+            <geom name="scanner_probe_contact_capsule" pos="0 0 0" quat="0.707105 0.707108 0 0" type="capsule" size="0.00215 0.024" material="matmarble" condim="1" group="3"/>
+            <!-- This sites was added for visualization. -->
+            <site name="scanner_probe_origin" pos="0 0 0" size="0.005 0.005 0.005" rgba="1 1 0 1" type="sphere" group="1"/>
+            <site name="scanner_probe_x" pos="0 0 0" size="0.002 .05" quat="0.707105 0 0.707108 0" rgba="1 0 0 1" type="cylinder" group="1"/>
+            <site name="scanner_probe_y" pos="0 0 0" size="0.002 .05" quat="0.707105 0.707108 0 0" rgba="0 1 0 1" type="cylinder" group="1"/>
+            <site name="scanner_probe_z" pos="0 0 0" size="0.002 .05" quat="0.707105 0 0 0.707108" rgba="0 0 1 1" type="cylinder" group="1"/>
+            <site name="scanner_probe_contact_direction" pos="0 0 0" size="0.002 10" rgba="0 1 0 0.1" type="cylinder" group="1"/>
+        </body>
+    </body>
+</mujocoinclude>

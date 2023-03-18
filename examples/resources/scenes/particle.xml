@@ -1,0 +1,26 @@
+<mujoco model="Particle">
+    <!--  Copyright © 2018, Roboti LLC
+
+          This file is licensed under the MuJoCo Resource License (the "License").
+          You may not use this file except in compliance with the License.
+          You may obtain a copy of the License at
+
+            https://www.roboti.us/resourcelicense.txt
+    -->
+
+    <include file="scene.xml"/>
+
+    <option solver="CG" tolerance="1e-6"/>
+
+    <size nconmax="3000" njmax="3000" nstack="50000000"/>
+
+    <visual>
+        <map stiffness="100"/>
+    </visual>
+
+    <worldbody>
+        <composite type="particle" count="10 10 10" spacing="0.07" offset="0 0 1">
+            <geom size=".02" rgba=".8 .2 .1 1"/>
+        </composite>
+    </worldbody>
+</mujoco>

@@ -1,0 +1,20 @@
+<mujocoinclude model="aisono_composite_object">
+    <body name="manipulation_interactive_probe" mocap="true" pos="1 -0.5 0.1" quat="0.707105 0 0 0.707108">
+        <geom type="capsule" size="0.03 0.05" material="matmarble" group="3" condim="1"/>
+    </body>
+
+<!--    <body name="manipulation_interactive_ellipsoid_0" pos="0.8 -0.5 0.2">-->
+<!--        <freejoint name="soft_free_joint_0" group="0"/>-->
+<!--        <composite prefix="0" type="ellipsoid" count="10 10 7" spacing="0.02">-->
+<!--            <skin texcoord="true" material="matsponge" rgba=".7 .7 .7 1"/>-->
+<!--            <geom type="capsule" size=".015 0.05" rgba=".8 .2 .1 1" group="3"/>-->
+<!--        </composite>-->
+<!--    </body>-->
+<!--    <body name="manipulation_interactive_ellipsoid_1" pos="1.2 -0.5 0.2">-->
+<!--        <freejoint name="soft_free_joint_1" group="0"/>-->
+<!--        <composite prefix="1" type="ellipsoid" count="10 10 7" spacing="0.02">-->
+<!--            <skin texcoord="true" material="matsponge" rgba=".7 .7 .7 1"/>-->
+<!--            <geom type="capsule" size=".015 0.05" rgba=".8 .2 .1 1" group="3"/>-->
+<!--        </composite>-->
+<!--    </body>-->
+</mujocoinclude>

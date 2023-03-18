@@ -1,0 +1,14 @@
+<mujocoinclude model="aisono_bed">
+    <body name="host_machine" pos="0 0 0.125" quat="0.707105 0 0 0.707108">
+        <joint name="joint_bed_slide" pos="0 0 0" type="slide" axis="0 1 0" limited="true" range="-0.8 0.8" damping="0.01" group="0"/>
+        <geom name="geom_host_machine" type="mesh" mesh="mesh_host_machine" material="mat_bed" contype="0" conaffinity="0" group="1"/>
+        <body name="bed_body" pos="0 -1 0" quat="1 0 0 0">
+            <joint name="joint_mat_fixed" pos="0 0 0" type="slide" axis="0 1 0" limited="true" range="-0.01 0.01" damping="0.01" group="0"/>
+            <geom name="geom_bed_body" type="mesh" mesh="mesh_bed_body" material="mat_bed" contype="0" conaffinity="0" group="1"/>
+            <body name="bed_mat" pos="0 0 0" quat="1 0 0 0">
+                <geom name="geom_bed_mat" type="mesh" mesh="mesh_bed_mat" material="mat_bed" contype="0" conaffinity="0" group="1"/>
+            </body>
+        </body>
+        <include file="aisono_aubo.xml"/>
+    </body>
+</mujocoinclude>

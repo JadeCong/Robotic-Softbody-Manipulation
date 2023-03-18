@@ -1,0 +1,32 @@
+<mujocoinclude model="aisono_torso">
+    <body name="nude_fem_torso" pos="0 -0.95 0.58" quat="0.5 0.5 -0.5 0.5">
+        <geom name="geom_nude_fem_torso" type="mesh" mesh="mesh_nude_fem_torso" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" material="mat_skin" condim="4" group="3"/>
+        <!-- This sites was added for visualization. -->
+        <site name="nude_fem_torso_origin" pos="0 0 0" size="0.005 0.005 0.005" rgba="1 1 0 1" type="sphere" group="0"/>
+        <site name="nude_fem_torso_x" pos="0 0 0" size="0.002 0.45" quat="0.707105 0 0 0.707108" rgba="1 0 0 1" type="cylinder" group="0"/>
+        <site name="nude_fem_torso_y" pos="0 0 0" size="0.002 0.25" quat="0.707105 0.707108 0 0" rgba="0 1 0 1" type="cylinder" group="0"/>
+        <site name="nude_fem_torso_z" pos="0 0 0" size="0.002 0.20" quat="0.707105 0 0.707108 0" rgba="0 0 1 1" type="cylinder" group="0"/>
+        <!-- fake aisono_breast -->
+        <body name="aisono_breast" pos="0.21 0 0.1" quat="0.707105 0 0.707108 0">
+            <joint name="aisono_breast_free_joint" type="slide" axis="1 1 1" limited="true" range="-0.003 0.003" stiffness="500" group="0"/>
+            <composite prefix="breast_one" type="ellipsoid" count="10 10 8" spacing="0.02">
+                <skin texcoord="true" material="matsponge" rgba=".7 .7 .7 1"/>
+                <geom type="capsule" size=".015 0.05" rgba=".8 .2 .1 1" group="3"/>
+            </composite>
+        </body>
+<!--        <body name="aisono_breast_left" pos="0.2 0.075 0.1" quat="0.707105 0 0.707108 0">-->
+<!--            <joint name="aisono_breast_free_joint_left" type="slide" axis="1 1 1" limited="true" range="-0.003 0.003" stiffness="50" group="0"/>-->
+<!--            <composite prefix="breast_left" type="ellipsoid" count="8 8 6" spacing="0.02">-->
+<!--                <skin texcoord="true" material="matsponge" rgba=".7 .7 .7 1"/>-->
+<!--                <geom type="capsule" size=".015 0.05" rgba=".8 .2 .1 1" group="3"/>-->
+<!--            </composite>-->
+<!--        </body>-->
+<!--        <body name="aisono_breast_right" pos="0.2 -0.075 0.1" quat="0.707105 0 0.707108 0">-->
+<!--            <joint name="aisono_breast_free_joint_right" type="slide" axis="1 1 1" limited="true" range="-0.003 0.003" stiffness="50" group="0"/>-->
+<!--            <composite prefix="breast_right" type="ellipsoid" count="8 8 6" spacing="0.02">-->
+<!--                <skin texcoord="true" material="matsponge" rgba=".7 .7 .7 1"/>-->
+<!--                <geom type="capsule" size=".015 0.05" rgba=".8 .2 .1 1" group="3"/>-->
+<!--            </composite>-->
+<!--        </body>-->
+    </body>
+</mujocoinclude>

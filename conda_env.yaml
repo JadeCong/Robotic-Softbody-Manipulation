@@ -1,0 +1,7 @@
+name: ultrasound_scan
+dependencies:
+  - python=3.9.16
+  - pip
+  - wheel
+  - pip:
+      - --requirement requirements.txt

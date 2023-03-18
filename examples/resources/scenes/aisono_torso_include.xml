@@ -1,0 +1,9 @@
+<mujocoinclude model="aisono_torso_include">
+    <asset>
+        <mesh name="mesh_nude_fem_torso" file="../meshes/torso/NudeFemTorso_138k.stl" scale="0.003 0.003 0.003"/>
+
+        <texture name="tex_skin" type="cube" file="../materials/skin_3.png"/>
+
+        <material name="mat_skin" reflectance="0.4" texrepeat="6 6" texture="tex_skin" texuniform="true"/>
+    </asset>
+</mujocoinclude>

@@ -1,0 +1,105 @@
+<mujoco model="aisono_simulation">
+    <include file="aisono_scene_base.xml"/>
+    <include file="aisono_bed_include.xml"/>
+    <include file="aisono_aubo_include.xml"/>
+    <include file="aisono_scanner_include.xml"/>
+    <include file="aisono_torso_include.xml"/>
+
+    <!--aisono_default-->
+    <default>
+        <default class="aubo">
+            <joint damping="50"/>
+        </default>
+    </default>
+
+    <!--aisono_bed-->
+    <worldbody>
+        <body name="host_machine" pos="0 0 0.125" quat="0.707105 0 0 0.707108">
+            <!-- This sites was added for visualization. -->
+            <site name="host_machine_origin" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 1 0 1" type="sphere" group="0"/>
+            <site name="host_machine_x" pos="0 0 0" size="0.005 0.4" quat="0.707105 0.707108 0 0" rgba="1 0 0 1" type="cylinder" group="0"/>
+            <site name="host_machine_y" pos="0 0 0" size="0.005 0.4" quat="0.707105 0 0.707108 0" rgba="0 1 0 1" type="cylinder" group="0"/>
+            <site name="host_machine_z" pos="0 0 0" size="0.005 0.4" quat="0.707105 0 0 0.707108" rgba="0 0 1 1" type="cylinder" group="0"/>
+            <!-- <joint name="joint_bed_slide" pos="0 0 0" type="slide" axis="0 1 0" limited="true" range="-0.8 0.8" damping="0.01" group="0"/> -->
+            <geom name="geom_host_machine" type="mesh" mesh="mesh_host_machine" solimp="0.998 0.998 0.001" solref="0.001 1" material="mat_bed" contype="0" conaffinity="0" condim="4" group="1"/>
+            <body name="bed_body" pos="0 0.1 0" quat="1 0 0 0">
+            <!-- <joint name="joint_mat_fixed" pos="0 0 0" type="slide" axis="0 1 0" limited="true" range="-0.01 0.01" damping="0.01" group="0"/> -->
+                <geom name="geom_bed_body" type="mesh" mesh="mesh_bed_body" solimp="0.998 0.998 0.001" solref="0.001 1" material="mat_bed" contype="0" conaffinity="0" condim="4" group="1"/>
+                <body name="bed_mat" pos="0 0 0" quat="1 0 0 0">
+                    <geom name="geom_bed_mat" type="mesh" mesh="mesh_bed_mat" solimp="0.998 0.998 0.001" solref="0.001 1" material="mat_bed" contype="0" conaffinity="0" condim="4" group="1"/>
+                    <!--aisono_torso-->
+                    <include file="aisono_torso.xml"/>
+                </body>
+            </body>
+            <!--aisono_aubo-->
+            <body name="base" pos="0 -0.34 0.88" quat="0.653000 0.271000 -0.271000 0.653000">
+                <!-- This sites was added for visualization. -->
+                <site name="base_origin" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 1 0 1" type="sphere" group="1"/>
+                <site name="base_x" pos="0 0 0" size="0.004 0.25" quat="0.707105 0 0.707108 0" rgba="1 0 0 1" type="cylinder" group="1"/>
+                <site name="base_y" pos="0 0 0" size="0.004 0.25" quat="0.707105 0.707108 0 0" rgba="0 1 0 1" type="cylinder" group="1"/>
+                <site name="base_z" pos="0 0 0" size="0.004 0.25" quat="0.707105 0 0 0.707108" rgba="0 0 1 1" type="cylinder" group="1"/>
+                <!-- robot view -->
+                <camera name="robot_view" mode="fixed" pos="0.6 0 1" quat="0.653000 0.271000 0.271000 0.653000"/>
+                <inertial pos="0 0 0" quat="1 0 0 0" diaginertia="0.01 0.01 0.01" mass="3"/>
+                <!-- mount attached here -->
+                <geom type="mesh" contype="0" conaffinity="0" group="2" rgba="1 1 1 1" mesh="base_Link" name="base_visual"/>
+                <geom type="mesh" rgba="1 1 1 1" mesh="base_Link" name="base_collision" group="0"/>
+                <body name="shoulder_Link" pos="0 0 0.122" quat="-3.67321e-06 0 0 1">
+                    <inertial pos="3.25089e-07 0.00534955 -0.00883689" quat="0.99587 -0.0907855 0 0" mass="1.57658" diaginertia="0.00406404 0.00395808 0.00305754" />
+                    <joint name="shoulder_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-3.05 3.05" group="1" class="aubo"/>
+                    <geom type="mesh" contype="0" conaffinity="0" group="2" rgba="1 1 1 1" mesh="shoulder_Link" name="shoulder_visual"/>
+                    <geom type="mesh" rgba="1 1 1 1" mesh="shoulder_Link" name="shoulder_collision" group="0"/>
+                    <body name="upperArm_Link" pos="0 0.1215 0" quat="0.499998 -0.5 -0.5 -0.500002">
+                        <inertial pos="0.203997 2.01305e-10 0.0127642" quat="0.5 0.5 0.5 0.5" mass="4.04176" diaginertia="0.144994 0.142607 0.00965399" />
+                        <joint name="upperArm_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-3.05 3.05" group="1" class="aubo"/>
+                        <geom type="mesh" contype="0" conaffinity="0" group="2" rgba="1 1 1 1" mesh="upperArm_Link" name="upperArm_visual"/>
+                        <geom type="mesh" rgba="1 1 1 1" mesh="upperArm_Link" name="upperArm_collision" group="0"/>
+                        <body name="foreArm_Link" pos="0.408 0 0" quat="-3.67321e-06 -1 0 0">
+                            <inertial pos="0.188922 6.78882e-07 0.0981027" quat="0.504333 0.495629 0.495629 0.504333" mass="2.27146" diaginertia="0.0443926 0.0441401 0.00213049" />
+                            <joint name="foreArm_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-3.05 3.05" group="1" class="aubo"/>
+                            <geom type="mesh" contype="0" conaffinity="0" group="2" rgba="1 1 1 1" mesh="foreArm_Link" name="foreArm_visual"/>
+                            <geom type="mesh" rgba="1 1 1 1" mesh="foreArm_Link" name="foreArm_collision" group="0"/>
+                            <body name="wrist1_Link" pos="0.376 0 0" quat="-2.59734e-06 0.707105 0.707108 -2.59735e-06">
+                                <inertial pos="7.54205e-07 0.00624813 -0.00392367" quat="0.677608 0.735423 0 0" mass="0.500478" diaginertia="0.000711946 0.000687466 0.000403991" />
+                                <joint name="wrist1_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-3.05 3.05" group="1" class="aubo"/>
+                                <geom type="mesh" contype="0" conaffinity="0" group="2" rgba="1 1 1 1" mesh="wrist1_Link" name="wrist1_visual"/>
+                                <geom type="mesh" rgba="1 1 1 1" mesh="wrist1_Link" name="wrist1_collision" group="0"/>
+                                <body name="wrist2_Link" pos="0 0.1025 0" quat="0.707105 -0.707108 0 0">
+                                    <inertial pos="-7.54208e-07 -0.00624813 -0.00392367" quat="0.735423 0.677608 0 0" mass="0.500478" diaginertia="0.000711946 0.000687466 0.000403991" />
+                                    <joint name="wrist2_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-3.05 3.05" group="1" class="aubo"/>
+                                    <geom type="mesh" contype="0" conaffinity="0" group="2" rgba="1 1 1 1" mesh="wrist2_Link" name="wrist2_visual"/>
+                                    <geom type="mesh" rgba="1 1 1 1" mesh="wrist2_Link" name="wrist2_collision" group="0"/>
+                                    <body name="wrist3_Link" pos="0 -0.094 0" quat="0.707105 0.707108 0 0">
+                                        <inertial pos="3.92049e-10 0.000175788 -0.0213294" quat="0.5 0.5 -0.5 0.5" mass="0.15831" diaginertia="0.000108772 7.31376e-05 7.19528e-05" />
+                                        <joint name="wrist3_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-3.05 3.05" group="1" class="aubo"/>
+                                        <geom type="mesh" contype="0" conaffinity="0" group="2" rgba="1 1 1 1" mesh="wrist3_Link" name="wrist3_visual"/>
+                                        <geom type="mesh" rgba="1 1 1 1" mesh="wrist3_Link" name="wrist3_collision" group="0"/>
+                                        <body name="end_effector_mount" pos="0 0 0" quat="1 0 0 0">
+                                            <!-- This sites were added for visualization. They are all standardized between models -->
+                                            <!-- Position mimics the end effector attachment point -->
+                                            <!-- Y-axis should be perpendicular to grasping motion, and Z-axis should point out of the robot eef -->
+                                            <site name="ee_origin" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 1 0 1" type="sphere" group="1"/>
+                                            <site name="ee_x" pos="0 0 0" size="0.004 0.08" quat="0.707105 0 0.707108 0" rgba="1 0 0 1" type="cylinder" group="1"/>
+                                            <site name="ee_y" pos="0 0 0" size="0.004 0.08" quat="0.707105 0.707108 0 0" rgba="0 1 0 1" type="cylinder" group="1"/>
+                                            <site name="ee_z" pos="0 0 0" size="0.004 0.08" quat="0.707105 0 0 0.707108" rgba="0 0 1 1" type="cylinder" group="1"/>
+                                            <!-- This camera points out from the eef. -->
+                                            <camera name="eye_in_hand" mode="fixed" pos="0.06 0 0" quat="0.383 -0.924 0 0" fovy="75"/>
+                                            <!-- to add end effector -->
+                                            <!--ultrasound_probe_gripper-->
+                                            <include file="aisono_scanner.xml"/>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <!--composite_object-->
+    <worldbody>
+        <include file="aisono_composite_object.xml"/>
+    </worldbody>
+</mujoco>

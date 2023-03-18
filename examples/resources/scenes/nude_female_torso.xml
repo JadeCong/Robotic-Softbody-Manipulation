@@ -1,0 +1,50 @@
+<mujoco model="nude_female_torso">
+    <include file="scene.xml"/>
+
+    <option solver="CG" tolerance="1e-6"/>
+
+    <size nconmax="500" njmax="5000" nstack="5000000"/>
+
+    <asset>
+        <mesh name="mesh_torso" file="NudeFemTorso_138k.STL"/>
+        <texture name="tex_skin" file="skin_3.png"/>
+        <material name="mat_skin" reflectance="0.4" texrepeat="6 6" texture="tex_skin" texuniform="true"/>
+    </asset>
+
+    <worldbody>
+        <body name="soft_objects" pos="0 0 1">
+            <freejoint name="soft_free_joint"/>
+            <composite type="ellipsoid" count="9 9 7" spacing="0.04">
+                <skin texcoord="true" material="matsponge" rgba=".7 .7 .7 1"/>
+                <geom type="capsule" size=".015 0.05" rgba=".8 .2 .1 1"/>
+            </composite>
+        </body>
+
+        <body name="custom_mesh" pos="0 0 3">
+            <geom name="nude_torso" type="mesh" mesh="mesh_torso" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" material="mat_skin" condim="4" />
+        </body>
+
+        <body name="robot" pos="0 0 1.2">
+            <joint axis="1 0 0" damping="0.1" name="slide0" pos="0 0 0" type="slide"/>
+            <joint axis="0 1 0" damping="0.1" name="slide1" pos="0 0 0" type="slide"/>
+            <joint axis="0 0 1" damping="1" name="slide2" pos="0 0 0" type="slide"/>
+            <geom name="sphere" mass="10.0" pos="0 0 0" rgba="1 0 0 1" size="0.15" type="sphere"/>
+			<camera euler="0 0 0" fovy="40" name="rgb" pos="0 0 2.5"></camera>
+        </body>
+
+        <body name="cylinder" pos="0.1 0.1 0.2">
+            <geom mass="100" size="0.15 0.15" type="cylinder" name="cylinder"/>
+            <joint axis="1 0 0" name="cylinder:slidex" type="slide"/>
+            <joint axis="0 1 0" name="cylinder:slidey" type="slide"/>
+        </body>
+    </worldbody>
+
+    <actuator>
+        <motor gear="2000.0" joint="slide0"/>
+        <motor gear="2000.0" joint="slide1"/>
+    </actuator>
+
+    <contact>
+        <pair name="contact1" geom1="sphere" geom2="cylinder"/>
+    </contact>
+</mujoco>
