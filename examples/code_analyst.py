@@ -27,14 +27,13 @@ def list_files(path):
         if os.path.isdir(fpath):
             list_files(fpath)
 
-
 def count_lines(fpath):
     """
     对于文件fpath，计算它的行数，然后根据其后缀将它的行数加到相应的全局变量当中
     """
     global CPP_SUFFIX_SET, PYTHON_SUFFIX_SET, JAVA_SUFFIX_SET
     global cpp_lines, python_lines, java_lines, total_lines
-
+    
     # 统计行数
     with open(fpath, 'rb') as f:
         cnt = 0
@@ -47,7 +46,7 @@ def count_lines(fpath):
             last_data = data
         if last_data[-1:] != b'\n':
             cnt += 1
-
+    
     # 只统计C/C++，Python和Java这三类代码
     suffix = os.path.splitext(fpath)[-1]
     if suffix in CPP_SUFFIX_SET:
@@ -58,7 +57,6 @@ def count_lines(fpath):
         java_lines += cnt
     else:
         pass
-
 
 def print_result():
     """
