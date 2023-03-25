@@ -39,11 +39,11 @@ class RealtimePlotWindow(object):  # by JadeCong
         self.plot_pens = list()
         for idx_data in range(self.data_choice):
             self.plot_pens.append(pg.mkPen(color=self.data_colors[idx_data], width=self.plot_linewidth, style=self.plot_styles[idx_data]))
-
+        
         # check whether the dimensions of data match
         if self.data_choice != self.reference_choice or self.data_choice != len(self.ylabel):
             raise ValueError
-
+        
         # construct and set the app, window
         self.win = pg.GraphicsLayoutWidget(show=True)
         self.win.setWindowTitle(self.win_title)
@@ -52,7 +52,7 @@ class RealtimePlotWindow(object):  # by JadeCong
         pg.setConfigOption('background', self.win_background)
         pg.setConfigOption('antialias', self.antialias)
         pg.setConfigOption('useOpenGL', self.useOpenGL)
-
+        
         # add plot and show the plot
         self.data_buffer = []
         self.data_plot = np.zeros((self.data_choice, 1))
@@ -81,21 +81,21 @@ class RealtimePlotWindow(object):  # by JadeCong
                 curve_instance = self.plots[idx_data].plot(self.data_plot[idx_data], pen=self.plot_pens[idx_data], name=self.data_labels[idx_data])
                 # curve_instance = self.plots[idx_data].plot(self.data_plot[idx_data], pen=self.plot_pens[idx_data], symbol=self.data_markers[idx_data], symbolBrush=self.data_colors[idx_data], name=self.data_labels[idx_data])
                 self.curves.append(curve_instance)
-
+        
         # set the application and update callback
         self.win_app = pg.mkQApp()
         # self.set_update_callback()
         # self.run_app()
-
+    
     def run_app(self):
         sys.exit(self.win_app.exec_())
         # pg.exec()
-
+    
     def set_update_callback(self, time, data):
         self.update_timer = QtCore.QTimer()
         self.update_timer.timeout.connect(lambda: self.update_plot(time, data))
         self.update_timer.start(1 / self.update_frequency)  # data update frequency
-
+    
     def update_plot(self, timestep, data):
         # check whether the dimensions of data match
         if len(data) != self.data_choice:
@@ -113,6 +113,6 @@ class RealtimePlotWindow(object):  # by JadeCong
         # show the plot
         self.win.show()
         QtGui.QApplication.processEvents()
-
+    
     def close_window(self):
         self.win_app.closeAllWindows()

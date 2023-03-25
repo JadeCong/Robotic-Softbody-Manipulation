@@ -3,25 +3,24 @@ import robosuite as suite
 from robosuite.environments.base import register_env
 import robosuite.utils.transform_utils as T
 
-from my_environments import Ultrasound, HMFC
-from my_models.grippers import UltrasoundProbeGripper
+from scan_environments import Ultrasound, HMFC
+from scan_models.grippers import ProbeGripper
 from utils.common import register_gripper
 import utils.plot as plt
 import utils.error as error 
 
 register_env(Ultrasound)
 register_env(HMFC)
-register_gripper(UltrasoundProbeGripper)
+register_gripper(ProbeGripper)
 
 
 ## Simulation ##
-
 def run_simulation():
     env_id = "Ultrasound"
-
+    
     env_options = {}
     env_options["robots"] = "Panda"
-    env_options["gripper_types"] = "UltrasoundProbeGripper"
+    env_options["gripper_types"] = "ProbeGripper"
     env_options["controller_configs"] = {
         "type": "OSC_POSE",
         "input_max": 1,
@@ -55,12 +54,12 @@ def run_simulation():
     env_options["initial_probe_pos_randomization"] = False
     env_options["deterministic_trajectory"] = False
     env_options["use_box_torso"] = True
-
+    
     env = suite.make(env_id, **env_options)
-
+    
     # reset the environment to prepare for a rollout
     obs = env.reset()
-
+    
     done = False
     ret = 0.
     
@@ -74,13 +73,12 @@ def run_simulation():
             break
     print("rollout completed with return {}".format(ret))
 
-
 def test_hmfc():
     env_id = "HMFC"
-
+    
     env_options = {}
     env_options["robots"] = "Panda"
-    env_options["gripper_types"] = "UltrasoundProbeGripper"
+    env_options["gripper_types"] = "ProbeGripper"
     env_options["controller_configs"] = {
         "type": "HMFC",
         "input_max": 1,
@@ -96,9 +94,9 @@ def test_hmfc():
     env_options["use_camera_obs"] = False
     env_options["horizon"] = 1000
     env_options["save_data"] = True
-
+    
     env = suite.make(env_id, **env_options)
-
+    
     # reset the environment to prepare for a rollout
     obs = env.reset()
     done = False
@@ -115,11 +113,11 @@ def test_hmfc():
 
 
 ## SIMULATION TEST ##
-#run_simulation()
-#test_hmfc()
+run_simulation()  # changed from citation to code(by JadeCong)
+test_hmfc()
 
 ## PLOTTING ##
-#plt.plot_sim_data("tracking", "test", True)
-#plt.plot_training_rew_mean("training_rew_mean/tracking.csv", "training_rew_mean/variable_z.csv", "training_rew_mean/wrench.csv")
-#error.calculate_error_metrics("variable_z")
-#plt.plot_hmfc_data(1)
+plt.plot_sim_data("tracking", "test", True)  # changed from citation to code(by JadeCong)
+plt.plot_training_rew_mean("training_rew_mean/tracking.csv", "training_rew_mean/variable_z.csv", "training_rew_mean/wrench.csv")
+error.calculate_error_metrics("variable_z")
+plt.plot_hmfc_data(1)
