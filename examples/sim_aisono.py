@@ -6,19 +6,8 @@ import traceback
 import glfw
 import copy
 
-from mujoco_py import ignore_mujoco_warnings as mj_ignore_warnings
-from mujoco_py import MujocoException
-from mujoco_py import const as mj_const
-from mujoco_py import functions as mj_fn
-from mujoco_py import load_model_from_path, load_model_from_mjb, load_model_from_xml
-from mujoco_py import MjRenderContext, MjRenderContextOffscreen, MjRenderContextWindow, MjBatchRenderer, GlfwContext
-from mujoco_py import MjSim, MjSimState
-from mujoco_py import MjViewer, MjViewerBasic
-
-from mujoco_py.cymj import PyMjModel, PyMjData
-from mujoco_py.cymj import PyMjvScene, PyMjvCamera, PyMjvOption, PyMjvPerturb
-from mujoco_py.cymj import PyMjUI, PyMjuiState, PyMjrContext, PyMjrRect
-from mujoco_py.modder import LightModder, CameraModder, MaterialModder, TextureModder
+import mujoco
+import mediapy as media
 
 from scipy.spatial.transform import Rotation as R
 
@@ -35,6 +24,7 @@ model = None
 sim = None
 modder = None
 hmd = HMD()
+renderer = None
 
 
 def render_callback(sim, viewer):
@@ -65,48 +55,49 @@ def mujoco_sim():
     global model, sim
     
     # Load the simulation model
-    # model = load_model_from_path("/home/jade/Documents/JadeCloud/Works/Aisono/Projects/Workflows/Doing/PycharmProjects/"
-    #                              "aisono-mujoco-py/apps/resources/scenes/aisono_simulation.xml")
-    model = load_model_from_path("./resources/scenes/softcylinder.xml")
-    # model = load_model_from_mjb("./resources/scenes/mjmodel.mjb")
+    model = mujoco.MjModel.from_xml_string("/Users/jadecong/Jade Cloud/Tempfiles/Projects/GitHub/JadeCong/Robotic-Softbody-Manipulation/examples/resources/scenes/aisono_simulation.xml")
     
     # Construct the simulation and viewer
     # sim = MjSim(model, render_callback=render_callback)
-    sim = MjSim(model)
-    viewer = MjViewer(sim)
+    # renderer = mujoco.Renderer(model)
+    # sim = MjSim(model)
+    # viewer = MjViewer(sim)
+    # model = mujoco.MjModel.from_xml_string(free_body_MJCF)
+    renderer = mujoco.Renderer(model, 400, 600)
+    data = mujoco.MjData(model)
+    mujoco.mj_forward(model, data)
+    renderer.update_scene(data, "fixed")
+    media.show_image(renderer.render())
     
     # Simulation step update and viewer scene render
-    step = 0
-    while True:
-        # TODO: Update the simulation scene states(robots and objects)
-        # t = time.time()
-        # x, y = math.cos(t), math.sin(t)
-        # viewer.add_marker(type=4, pos=np.array([y, x, 0.2]), label="sphere")
-        # sim.data.ctrl[0] = math.cos(t / 10.) * 0.01
-        # sim.data.ctrl[1] = math.sin(t / 10.) * 0.01
+    # step = 0
+    # while True:
+    #     # TODO: Update the simulation scene states(robots and objects)
+    #     # t = time.time()
+    #     # x, y = math.cos(t), math.sin(t)
+    #     # viewer.add_marker(type=4, pos=np.array([y, x, 0.2]), label="sphere")
+    #     # sim.data.ctrl[0] = math.cos(t / 10.) * 0.01
+    #     # sim.data.ctrl[1] = math.sin(t / 10.) * 0.01
         
-        # TODO: Handle events (calls all callbacks)
+    #     # TODO: Handle events (calls all callbacks)
         
-        # Simulation forward and render the scene
-        # sim.forward()
-        sim.step()
-        add_waypoint_site(viewer, mj_const, "wp1", pos=[0.2, 0.2, 0.2], quat=np.array([1, 0, 0, 0]))
-        add_waypoint_site(viewer, mj_const, "wp2", pos=[0.3, 0.2, 0.3], quat=np.array([1, 0, 0, 0]))
-        add_waypoint_line(viewer, mj_const, "line", pos_start=np.array([0.2, 0.2, 0.2]), pos_end=np.array([0.3, 0.2, 0.3]))
+    #     # Simulation forward and render the scene
+    #     # sim.forward()
+    #     sim.step()
+    #     add_waypoint_site(viewer, mj_const, "wp1", pos=[0.2, 0.2, 0.2], quat=np.array([1, 0, 0, 0]))
+    #     add_waypoint_site(viewer, mj_const, "wp2", pos=[0.3, 0.2, 0.3], quat=np.array([1, 0, 0, 0]))
+    #     add_waypoint_line(viewer, mj_const, "line", pos_start=np.array([0.2, 0.2, 0.2]), pos_end=np.array([0.3, 0.2, 0.3]))
         
-        viewer.render()
-        time.sleep(0.01)
+    #     time.sleep(0.01)
         
-        # Check the step whether need to stop
-        step += 1
-        if step > 100000 and os.getenv('TESTING') is not None:
-            break
+    #     # Check the step whether need to stop
+    #     step += 1
+    #     if step > 100000 and os.getenv('TESTING') is not None:
+    #         break
     
     # Delete everything we allocated
-    mj_fn.mj_deleteModel(model)
     
     # Deactivate MuJoCo
-    mj_fn.mj_deactivate()
 
 def add_waypoint_line(viewer, const, name="line", rgba=[1, 1, 0, 1], pos_start=[0, 0, 0], pos_end=[1, 1, 1]):
     # Import the dependencies
