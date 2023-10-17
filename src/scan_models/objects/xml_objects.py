@@ -12,7 +12,7 @@ class SoftTorsoObject(MujocoXMLObject):
     
     def __init__(self, name, joints="default", damping=None, stiffness=None):
         # super().__init__("scan_models/assets/objects/soft_human_torso.xml", name=name, duplicate_collision_geoms=False)
-        super().__init__("scan_models/assets/objects/soft_human_torso.xml", name=name, joints=joints, duplicate_collision_geoms=False)
+        super().__init__("scan_models/assets/objects/soft_torso.xml", name=name, joints=joints, duplicate_collision_geoms=False)
         
         self.damping = damping
         self.stiffness = stiffness

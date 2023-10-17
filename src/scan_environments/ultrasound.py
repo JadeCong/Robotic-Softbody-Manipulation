@@ -325,7 +325,7 @@ class Ultrasound(SingleArmEnv):
         
         # Initialize torso object
         # self.torso = SoftBoxObject(name="torso") if self.use_box_torso else SoftTorsoObject(name="torso", joints=[{"name": "soft_human_torso_free_joint", "type": "slide", "axis": "0 0 1", "limited": "true", "range": "-0.000001 0.000001", "stiffness": "500"}])
-        self.torso = SoftBoxObject(name="torso") if self.use_box_torso else SoftTorsoObject(name="torso")
+        self.torso = SoftBoxObject(name="torso") if self.use_box_torso else SoftTorsoObject(name="human")
         
         if self.torso_solref_randomization:
             # Randomize torso's stiffness and damping (values are taken from my project thesis)
