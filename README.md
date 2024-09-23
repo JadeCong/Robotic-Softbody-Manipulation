@@ -4,12 +4,12 @@ The overarching goal of this framework is to make a robot manipulator able to co
 As a first step, a simulation environment for experimenting with soft contacts has been created. Using reinforcement learning, the goal of the **ultrasound task** is to learn a robot how to perform a sweep across the surface of a soft body, while both exerting a desired force and keeping a constant velocity.  
 
 <p align="middle">
-  <img src="docs/images/frontview.png" width="350" />
-  <img src="docs/images/sideview.png" width="350" /> 
+  <img src="assets/images/frontview.png" width="350" />
+  <img src="assets/images/sideview.png" width="350" /> 
 </p>
 <p align="middle">
-  <img src="docs/images/press_torso.png" width="350" />
-  <img src="docs/images/press_torso_transparent.png" width="350" /> 
+  <img src="assets/images/press_torso.png" width="350" />
+  <img src="assets/images/press_torso_transparent.png" width="350" /> 
 </p>
 
 
@@ -46,11 +46,11 @@ To avoid package conflicts, it is smart to create a virtual environment. It is p
 ## Conda
 First, follow the [guidelines](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) on how to install Miniconda. The virtual environment can then be created by running 
 ```
-conda env create -f conda.yaml
+conda env create -f ./assets/docs/conda_env.yaml
 ```
 To activate the virtual environment, run 
 ```
-conda activate rl_ultrasound
+conda activate ultrasound_scan
 ```
 
 ## Pip
@@ -67,7 +67,7 @@ source venv/bin/activate
 The required packages can then be installed with 
 ```
 pip3 install wheel  
-pip3 install -r requirements.txt
+pip3 install -r ./assets/docs/requirements.txt
 ```
 
 # Train and run an RL agent

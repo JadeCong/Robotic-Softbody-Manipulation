@@ -18,5 +18,5 @@
 # Project Config Misc
 build/
 install/
-logs/
+# logs/
 __pycache__/
