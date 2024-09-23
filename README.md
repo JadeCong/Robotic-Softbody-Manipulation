@@ -71,10 +71,10 @@ pip3 install -r ./assets/docs/requirements.txt
 ```
 
 # Train and run an RL agent
-It is possible to train an RL agent to perform the **ultrasound task**, where the framework has been integrated with the PPO algorithm from [stable-baselines](https://github.com/DLR-RM/stable-baselines3). Different settings (e.g. controller specifications) can be specified in `rl_config.yaml`. Note that the config file is not complete, so there exists numerous of other settings and hyperparameters that are not specifed in the file. For these parameters, the default values are used. 
+It is possible to train an RL agent to perform the **ultrasound task**, where the framework has been integrated with the PPO algorithm from [stable-baselines](https://github.com/DLR-RM/stable-baselines3). Different settings (e.g. controller specifications) can be specified in `rl_scan.yaml`. Note that the config file is not complete, so there exists numerous of other settings and hyperparameters that are not specifed in the file. For these parameters, the default values are used. 
 
 To train (or run) an agent, it is as simple as running
 ```
-python3 rl.py
+python3 rl_scan.py
 ``` 
-Whether to train an agent, or evaluate a trained agent, is specified in `rl_config.yaml`.
+Whether to train an agent, or evaluate a trained agent, is specified in `rl_scan.yaml`.
