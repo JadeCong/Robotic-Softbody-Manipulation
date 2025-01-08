@@ -78,3 +78,9 @@ To train (or run) an agent, it is as simple as running
 python3 rl_scan.py
 ``` 
 Whether to train an agent, or evaluate a trained agent, is specified in `rl_scan.yaml`.
+
+---
+
+## Star History Graph
+
+[![Star History Chart](https://api.star-history.com/svg?repos=JadeCong/Robotic-Softbody-Manipulation&type=Date&theme=dark)](https://star-history.com/#JadeCong/Robotic-Softbody-Manipulation&Date&theme=dark)
